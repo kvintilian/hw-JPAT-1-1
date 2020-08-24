@@ -1,14 +1,14 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
     protected int num = 1;
     private static Logger logger;
-    private final SimpleDateFormat formatForDateNow;
+    private final DateTimeFormatter formatForDateNow;
 
     private Logger() {
-        formatForDateNow = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+         formatForDateNow = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss");
     }
 
     public static Logger getInstance() {
@@ -17,7 +17,6 @@ public class Logger {
     }
 
     public void log(String msg) {
-        Date dateNow = new Date();
-        System.out.println("[" + formatForDateNow.format(dateNow) + " " + num++ + "] " + msg);
+        System.out.println("[" + formatForDateNow.format(LocalDateTime.now()) + " " + num++ + "] " + msg);
     }
 }

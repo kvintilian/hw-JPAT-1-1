@@ -6,7 +6,7 @@ public class Person {
 
     protected final String name;
     protected final String surname;
-    protected int age = -1;
+    protected int age = UNDEFINED_AGE;
     protected String address;
 
     public Person(String name, String surname) {

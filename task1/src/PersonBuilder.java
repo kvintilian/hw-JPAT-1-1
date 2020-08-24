@@ -15,7 +15,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder setAge(int age) throws IllegalArgumentException {
+    public PersonBuilder setAge(int age) {
         if (age < 0) throw new IllegalArgumentException("Field \"age\" cannot be negative!");
         this.age = age;
         return this;
@@ -26,7 +26,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() throws IllegalArgumentException {
+    public Person build() {
         String notSetFields = "";
         if (name == null || name.length() == 0) {
             notSetFields = "\"name\"";
@@ -35,7 +35,7 @@ public class PersonBuilder {
             notSetFields += (notSetFields.length() > 0 ? ", ":"") + "\"surname\"";
         }
         if (notSetFields.length() > 0)
-            throw new IllegalArgumentException("Field(s) " + notSetFields + " was not set!");
+            throw new IllegalStateException("Field(s) " + notSetFields + " was not set!");
         Person person = new Person(name, surname, age);
         if (address != null && address.length() > 0)
             person.setAddress(address);
